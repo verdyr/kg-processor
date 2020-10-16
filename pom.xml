@@ -17,11 +17,26 @@
     <quarkus-plugin.version>1.8.3.Final</quarkus-plugin.version>
     <compiler-plugin.version>3.8.1</compiler-plugin.version>
     <quarkus.platform.group-id>io.quarkus</quarkus.platform.group-id>
+    <mapr.version>6.1.0-mapr</mapr.version>
   </properties>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>${quarkus.platform.group-id}</groupId>
+  <repositories>
+      <repository>
+            <id>central</id>
+            <url>http://repo.maven.apache.org/maven2/</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+        <repository>
+            <id>mapr-releases</id>
+            <url>http://repository.mapr.com/maven/</url>
+            <snapshots><enabled>true</enabled></snapshots>
+            <releases><enabled>true</enabled></releases>
+        </repository>
+    </repositories>
+    <dependencyManagement>
+      <dependencies>
+        <dependency>
+          <groupId>${quarkus.platform.group-id}</groupId>
         <artifactId>${quarkus.platform.artifact-id}</artifactId>
         <version>${quarkus.platform.version}</version>
         <type>pom</type>
@@ -66,6 +81,48 @@
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-junit5</artifactId>
       <scope>test</scope>
+    </dependency>
+    <!-- RDF & BlazeGraph Dependencies -->
+    <dependency>
+        <groupId>org.openrdf.sesame</groupId>
+        <artifactId>sesame-rio-api</artifactId>
+        <version>2.7.12</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openrdf.sesame</groupId>
+        <artifactId>sesame-rio-turtle</artifactId>
+        <version>2.7.12</version>
+    </dependency>
+     <dependency>
+        <groupId>org.openrdf.sesame</groupId>
+        <artifactId>sesame-rio-ntriples</artifactId>
+        <version>2.7.12</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openrdf.sesame</groupId>
+        <artifactId>sesame-rio-rdfxml</artifactId>
+        <version>2.7.12</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openrdf.sesame</groupId>
+        <artifactId>sesame-rio-binary</artifactId>
+        <version>2.7.12</version>
+    </dependency>
+    <dependency>
+        <groupId>org.openrdf.sesame</groupId>
+        <artifactId>sesame-rio-rdfjson</artifactId>
+        <version>2.7.12</version>
+    </dependency>
+    <dependency>
+        <groupId>com.blazegraph</groupId>
+        <artifactId>bigdata-core</artifactId>
+        <version>2.0.0</version>
+    </dependency>
+    <!-- MapR DB dependencies -->
+    <dependency>
+       <groupId>com.mapr.db</groupId>
+       <artifactId>maprdb</artifactId>
+       <version>${mapr.version}</version>
     </dependency>
   </dependencies>
   <build>
