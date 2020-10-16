@@ -84,6 +84,17 @@ import processor.AdfReader;
 import processor.util.RdfUtil;
 import processor.util.RunUtil;
 
+import javax.enterprise.context.control.ActivateRequestContext;
+import javax.inject.Inject;
+
+import io.quarkus.runtime.Quarkus;
+import io.quarkus.runtime.QuarkusApplication;
+import io.quarkus.runtime.annotations.QuarkusMain;
+
+//@QuarkusMain
+//public class TripleStore implements QuarkusApplication {
+
+
 /*
 *   SB
 *   adapted from Adf Server for GDPR graph test, as a MapRDB Table OJAI reader, with and w/o NER
@@ -215,7 +226,7 @@ public class BlazegraphTripleStore extends NanoSparqlServer
      			}
 
      			@Override
-     			public void run()
+     			public void run() throws Exception {
      			{
      				BlazegraphTripleStore.loadToTripleStore(model, externalResources);
      			}
@@ -234,7 +245,7 @@ public class BlazegraphTripleStore extends NanoSparqlServer
 
 /*
  *   SB
- *   adapted from Adf to load GDPR, as a GDPRReader, with and w/o NER
+ *   adapted from Adf to load BagOfWords, as a Reader, with and w/o NER
  * 
  */
 
@@ -256,10 +267,10 @@ public class BlazegraphTripleStore extends NanoSparqlServer
         }
         rs.close();
 
-//      	Map<String, Model> graphMap = AdfReader.extractDataDescription(GDPRPath, logger);
+//      	Map<String, Model> graphMap = AdfReader.extractDataDescription(BagOfWordsPath, logger);
      	if (graphMap.isEmpty())
      	{
-     		logger.error("No graphs were extracted from GDPR: " + tablePath);
+     		logger.error("No graphs were extracted from BagOgWords: " + tablePath);
      		return;
      	}
 
